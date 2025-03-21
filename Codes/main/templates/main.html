@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href = "{% static 'css/main.css' %} ">
+{% endblock %}
+
+{% block content %}
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <main>
+        
+        <div class = 'instruction'>
+            <h2 class = "head-i">Щоб згенерувати свій QR-код треба:</h2>
+            <p class = "rules-i">1.На головній сторінці за змовчуванням стоїть безкоштовна підписка, якщо ви хочете більше можливостей то оформіть підписку за певну суму. <br>
+            2.Після того як ви вирішили, що вибрати натискаєте кнопку "Згенерувати". <br>
+            3.Після натиснення вас перекидує на сторінку створення самого QR-коду, де ви задаєте ім'я, опис, колір та url вашому коду. <br>
+            4.Після закінчення ви повинні натиснути кнопку "Download". <br>
+            </p>
+        </div>     
+        
+        <div class = "cards">
+            <span>
+                <div class = "card-header">
+                    <h1>Free</h1>
+                </div>
+                <p class = "description">Можна створити один QR-код на 6-ть місяців.</p>
+                <h1 class = "lite">$0
+                    USD/місяць</h1>
+                    <div class = "button">
+                        <h1>Безкоштовно</h1>
+                    </div> 
+            </span>
+            <span>
+                <div class = "card-header">
+                    <h1>Standart</h1>
+                </div>
+                <p class = "description">Можна створити 10 кастомізованих QR-кодів.</p>
+                <h2 class = "pro"> $2
+                    USD/місяць</h2>
+                    <div class = "button" id="buy">
+                        <h1 id="subStandart">Купити</h1>
+                    </div> 
+            </span>  
+            <span>
+                <div class = "card-header">
+                    <h1>Pro</h1>
+                </div>
+                <p class = "description">Можна створити до 100 QR-кодів</p>
+                <h3 class = "plus"> $10
+                    USD/місяць</h3> 
+                    <div class = "button" id="buy">
+                        <h1 id="subPro">Купити</h1>
+                    </div>
+            </span>  
+            <span class = "desktop">
+                <div class = "card-header-d">
+                    <h1>Desktop</h1>
+                </div>
+                <p class = 'text-d'>Можна створити 5 костамізованих QR-кодів, зберігаючих будь-які дані, окрім посилання.</p>
+                <h2 class = "desktop_p">$1 USD/ 5 QR-codes</h2>
+                    <div class = "button" id="buy">
+                        <h1 id="subDesktop">Купити</h1>
+                    </div> 
+            </span> 
+        </div>
+        <div class = "generate">
+            <a href="{% url 'create_code' %}">Згенерувати</a>
+        </div>
+    </main>
+    <span class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+                {% for field in form %}
+                    <div class="field-block" id="{{ field.label }}">
+                        <label for="{{ field.id_for_label }}">
+                            {% if field.label == "Subscription" %}
+                                Підписка
+                            {% elif field.label == "DesktopQuantity" %}
+                                Сплачувана сума (За 1$ створити 5 QR-кодів)
+                            {% else %}
+                                {{ field.label }}
+                            {% endif %}
+                        </label>
+                        {{ field }}
+                    </div>
+                    <div class="field-errors">
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <label for="">Номер картки</label>
+                <!-- <p class="card-info">Номер картки</p> -->
+                <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" class="form-input" required>
+                <!-- <p class="card-info">Пароль</p> -->
+                 <label for="">Пароль</label>
+                <input type="password" class="form-input">
+                <button class="form-button" type="submit">Зберегти</button>
+        </form>
+    </span>
+
+{% endblock %}

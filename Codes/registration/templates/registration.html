@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="signin-window">
+            <div class="options">
+                <div class="sign-in">
+                    <span>Зареєструватися</span>
+                </div>
+                <div class="login-tab">
+                    <a href="{% url 'authorization' %}">Авторизуватися</a>
+                </div>
+            </div>
+            
+            
+
+            <div class="divider">
+                <hr class="line"/>
+                <span>Зареєструватися</span>
+                <hr class="line"/>
+            </div>
+        
+            <form class="login-form" method="post">
+                {% csrf_token %}
+                <div class="name-fields">
+                    <div class="input-group">
+                        <label>Ім’я</label>
+                        <input type="text" placeholder="Ivan" name="name">
+                    </div>
+                    <div class="input-group">
+                        <label>Прізвище</label>
+                        <!-- {% csrf_token %} -->
+                        <input type="text" placeholder="Ivanov" name="surname">
+                    </div>
+                </div>
+                
+                <div class="input-group email">
+                    <label>Нікнейм</label>
+                    <!-- {% csrf_token %} -->
+                    <input type="text" placeholder="_iva_" name="username">
+                </div>
+
+                <div class="input-group email">
+                    <label>Адреса електронної пошти</label>
+                    <!-- {% csrf_token %} -->
+                    <input type="email" placeholder="ivan.ivanov@example.com" name="email">
+                </div>
+
+                <div class="input-group password">
+                    <label>Пароль</label>
+                    <!-- {% csrf_token %} -->
+                    <input type="password" placeholder="Enter your password" name="password">
+                </div>
+
+                <div class="input-group confirm-password">
+                    <label>Підтвердіть пароль</label>
+                    <!-- {% csrf_token %} -->
+                    <input type="password" placeholder="Confirm your password" name="confirm_password">
+                </div>
+        
+                <button type="submit" class="login-button">
+                    Підтвердити
+                </button>
+                {% if create_user_error %}
+                    <p class="error">Виникла помилка під час реєстрації. Спробуйте, будь ласка, ввести іншу електронну адресу або авторизуватися.</p>
+                {% endif %}
+                {% if password_error %}
+                    <p class="error">Паролі не співпадають. Спробуйте, будь ласка, ще раз.</p>
+                {% endif %}
+            </form>
+        </div>
+    </main>
+{% endblock %}

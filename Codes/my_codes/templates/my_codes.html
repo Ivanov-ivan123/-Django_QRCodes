@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    My QRCodes
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href = "{% static 'css/my_codes.css' %} ">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <h1 class="view">Ваші коди</h1>
+        <div class="codes">
+            {% for code in codes %}
+                <div class="card">
+                    <img src="{{ code.image_qr.url }}" alt="code-image">
+                    <div class="info">
+                        <p class="text-info">Назва: {{ code }}</p>
+                        <p class="text-info">Колір: {{ code.color }}</p>
+                        <p class="text-info">Час створення: {{ code.date_time }}</p>
+                        <p class="text-info">Опис: {{ code.description }}</p>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text", style="display: none;", name="image_name" value="{{ code }}">
+                        <button class="button" type="submit">
+                            Завантажити
+                            <img class="download-image" src="{% static 'images/load.png' %}" alt="">
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

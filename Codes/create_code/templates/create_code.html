@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Create QRCode
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href = "{% static 'css/create_code.css' %} ">
+{% endblock %}
+
+{% block content %}
+    <!-- <script src="{% static 'js/create_code.js' %}" defer></script> -->
+    <main>
+        <form class="details" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="info">
+                {% if not odd_number %}
+                    <p>Назва</p>
+                    <input type="text" name="title" required>
+                    <p>Контент QR-кода</p>
+                    <input type="text" name="url" required>
+                    <div class="colors">
+                        <div class="color-input">
+                            <p>Колір</p>
+                            <input id="inputColor" type="color" name="color">
+                        </div>
+                        <div class="color-input">
+                            <p>Колір фону</p>
+                            <input id="inputBgColor" value="#ffffff" type="color" name="bg_color">
+                        </div>
+                    </div>
+                    <p>Розмір (рекомандовано від 1 до 10)</p>
+                    <input  value="1" name="version" id="" min="1" max="40" required>
+                    {% if not user_status %}
+                        <p>Підпишіться, щоб отримати змогу створювати красивіші QR-коди.</p>
+                    {% else %}
+                        <p>Зображення в центрі</p>
+                        <input type="file" id="file-upload" name="center_image" accept="image/*">
+                        <p>Скруглення (дробове число від 0 до 1)</p>
+                        <input value="0" type="number" name="radius" id="" step="0.01" min="0" max="1">
+                        <p>Опис</p>
+                        <input type="text" name='description'>
+                    {% endif %}
+                    <div class="button-container">
+
+                        <button class="button" type="submitu">
+                            Застосувати зміни
+                            <img class="download-image" src="{% static 'images/repeat.png' %}" alt="">
+                        </button>
+                    </div>
+                    {% if number_error %}
+                        <p class="error">Виникла помилка під час створення qrcode. Ви перевищили доступну кількість створення qrcode. Для збільшення кількості придбайте нову підписку.</p>
+                    {% endif %}
+                    {% if creation_error %}
+                        <p class="error">Виникла помилка під час створення qrcode. Костамізувати qrcode можна лише з підпискою.</p>
+                    {% endif %}
+                    {% if is_desktop_mess_error %}
+                        <p class="error">У Вас підписка, що дозволяє створювати лише QR-коди для посилань. Посилання має містити протокол (https://).</p>
+                    {% endif %}
+                    {% if is_not_desktop_mess_error %}
+                        <p class="error">У Вас підписка, що не дозволяє створювати QR-коди для посилань. Інформація, що він зберігає не має містити протокол (https://).</p>
+                    {% endif %}
+                {% else %}
+                    <p class="error">Досягнута максимальна кількість створених QR-кодів. Можете обрати іншу підписку для біьшого ліміту.</p>
+                {% endif %}
+            </span>
+        </form>
+        <div class="code">
+            {% if not code %}
+                <img class="qrcode" src="{% static 'images/pixel-frame.png' %}" alt="pipel-code">
+            {% endif %}
+            {% if code %}
+                <img class="qrcode" src="{{ code.image_qr.url }}" alt="pipel-code">
+            {% endif %}
+            <p style="color: #C8ACD6; max-width: 300px;">Щоб завантажити код, перейдіть на сторінку "Мої QR-коди".</p>
+        </div>
+    </main>
+{% endblock %}

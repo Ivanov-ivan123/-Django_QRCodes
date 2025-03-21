@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Authorization
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/authorization.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="login-window">
+            <div class="options">
+                <div class="sign-in">
+                    <a href="{% url 'registration' %}">Зареєструватися</a>
+                </div>
+                <div class="login-tab">
+                    <span>Авторизуватися</span>
+                </div>
+            </div>
+            
+            <div class="divider">
+                <hr class="line"/>
+                <span>Авторизуватися</span>
+                <hr class="line"/>
+            </div>
+            
+            
+            <form class="login-form" method="post">
+                {% csrf_token %}
+                <div class="input-group email">
+                    <label>Нікнейм</label>
+                    <input type="text" placeholder="_iva_" name="username">
+                </div>
+                
+                <div class="input-group password">
+                    <label>Пароль</label>
+                    <input type="password" placeholder="Enter your password" name="password">
+                </div>
+        
+                <button type="submit" class="login-button">
+                    Підтвердити
+                </button>
+                {% if fail %}
+                    <p class="error">Ви ввели невірний пароль або такого користувача не існує. Спробуйте зареєструватися.</p>
+                {% endif %}
+            </form>
+            
+        </div>
+    </main>
+{% endblock %}

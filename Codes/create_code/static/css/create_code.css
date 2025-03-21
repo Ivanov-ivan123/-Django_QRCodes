@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #17153B;
+}
+
+main .details{
+    display: flex;
+    flex-direction: column;
+    /* flex-shrink: 0; */
+    /* justify-content: flex-start; */
+    width: 60%;
+    max-width: 600px;
+    height: 550px;
+}
+.details .info{
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+    padding-right: 20px;
+    gap: 10px;
+}
+.info p{
+    font-size: 20px;
+    color: #C8ACD6;
+}
+.info input{
+    width: 100%;
+    border: 5px solid #433D8B;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #17153B;
+    color: #C8ACD6;
+}
+main .code{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 50px;
+    height: 400px;
+}
+.code .qrcode{
+    width: 200px;
+    height: 200px;
+}
+.button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    gap: 10px;
+    border: 5px solid #C8ACD6;
+    border-radius: 10px;
+    background-color: #433D8B;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 150px;
+    margin-bottom: 100px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    background-color: #17153B;
+}
+.colors{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 10px; */
+}
+.color-input{
+    width: 200px;
+    height: 80px;
+}
+.color-input input{
+    height: 50px;
+}
+.info .error{
+    color: red;
+}
+.button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.file-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+input[type="file"] {
+    font-size: 20px;
+}
+.download-image{
+    width: 40px;
+    height: 40px;
+}
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(#C8ACD6, #433D8B);
+    border-radius: 5px;
+}

@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block link %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class = "header">
+            <a href="{% url 'main' %}">
+                <img class="logo" src="{% static 'images/logo.png' %}" alt="logo">
+            </a>
+            <div class="links">
+                <a href="{% url 'main' %}" class="link">Головна</a>
+                <a href="{% url 'create_code' %}" class="link">Створити QR-код</a>
+                <a href="{% url 'my_codes' %}" class="link">Мої QR-коди</a>
+                <a href="{% url 'contacts' %}" class="link">Контакти</a>
+                {% if not authenticated %}
+                    <a href="{% url 'registration' %}" class="link">Зареєструватися</a>
+                {% endif %}
+            </div>
+            <div class="vector">
+                <img class="vector-bg" src="{% static 'images/vector.png' %}" alt="">
+                {% if authenticated %}
+                    <div>
+                        <p class="username">{{ user }}</p>
+                        <a href="{% url 'logout' %}"><img src="{% static 'images/logout.png' %}" alt="logout"></a>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+        <footer>
+            <!-- <img class="vector-left" src="{% static 'images/vector.png' %}" alt=""> -->
+            
+            <div class="content">
+                <!-- <img class="qr-logo" src="{% static 'images/logo.png' %}" alt=""> -->
+                
+                <div class="social-links">
+                    <div class="social-item">
+
+                        <img class="social-icon" src="{% static 'images/inst.png' %}" alt="">
+                        <a href="" class="link">Інстаграм</a>
+                    </div>
+                    <div class="social-item">
+                        <img class="social-icon" src="{% static 'images/telegram.png' %}" alt="">
+                        <a href="" class="link">Телеграм</a>
+                    </div>
+                    <div class="social-item">
+                        <img class="social-icon" src="{% static 'images/viber.png' %}" alt="">
+                        <a href="" class="link">Вайбер</a>
+                    </div>
+                    <div class="link"> Some icons made by <a class="link" href="https://www.flaticon.com/authors/creative-avenue" title="Creative Avenue"> <br> Creative Avenue </a> <br> from <a class="link" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </div>
+            </div>
+            
+            <img class="vector-right" src="{% static 'images/vector.png' %}" alt="">
+        </footer>
+    </body>
+</html>

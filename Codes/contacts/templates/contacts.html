@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Contacts
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href = "{% static 'css/contacts.css' %} ">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class = "box">
+                <h2>Форма зворотнього зв’язку</h2>
+            <div>
+                <p>Ім’я та прізвище</p>
+                <input class = "input" type = "">
+            </div>
+            <div>
+                <p>Адреса електронної пошти</p>
+                <input class = "input" type="">
+            </div>
+            <div>
+                <p>Тема</p>
+                <input class = "input" type="">
+            </div>
+            <div>
+                <p>Питання/консультація</p>
+                <input class = "input2" type="">
+            </div>
+            <div class = "send">
+                <h1>Надіслати</h1>
+            </div>
+        </div>
+    </main>
+{% endblock %}
