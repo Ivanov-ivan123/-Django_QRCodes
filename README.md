@@ -26,6 +26,8 @@ English version is [_below_](#qr-code-generator).
 
 1. [Бояркіна Орина](https://github.com/BoiarkinaOryna/Django_QRCodes)
 2. [Філинська Дар'я](https://github.com/DariaFilinskaya/Django_QRCodes)
+3. [Іванов Іван](https://github.com/Ivanov-ivan123/-Django_QRCodes)
+
 
 
 ## Посилання на Figma
