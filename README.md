@@ -309,6 +309,7 @@ pip3 install -r requirements.txt
 
 1. [Boyarkina Oryna](https://github.com/BoiarkinaOryna/Django_QRCodes)
 2. [Filynska Daria](https://github.com/DariaFilinskaya/Django_QRCodes)
+3. [Ivanov Ivan](https://github.com/Ivanov-ivan123/-Django_QRCodes)
 
 ## Links to Figma
 
